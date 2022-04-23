@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<EjemploEF.Models.Enrrollments>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +7,33 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<table  class="table table-striped">
+
+        <thead>
+            <tr>
+                  <th>Id de inscricion </th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Course</th>
+                 <th>Precio</th>
+                 <th>Incripcion</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        @foreach(var iteracion in Model)
+        {
+            <tr>
+                <td>@iteracion.EnrrollmentId</td>
+                <td>@iteracion.Student.FirstName</td>
+                <td>@iteracion.Student.LastName</td>
+                <td>@iteracion.Course.Title</td>
+                <td>$ @iteracion.Course.Credits</td>
+                <td>@iteracion.Student.EnrrollmentsDate</td>
+            </tr>
+        }
+        </tbody>
+    
+</table>

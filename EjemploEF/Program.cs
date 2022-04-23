@@ -1,4 +1,6 @@
 using EjemploEF.Data;
+using EjemploEF.Repository;
+using EjemploEF.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +15,7 @@ options.UseMySql(conecctionstring, ServerVersion.AutoDetect(conecctionstring)));
 
 
 //inyecion de la dependencia
-
+builder.Services.AddTransient<IEnrrollments, EnrrollmentsRepository>();
 
 var app = builder.Build();
 

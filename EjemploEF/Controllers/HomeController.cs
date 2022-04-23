@@ -1,4 +1,5 @@
 ﻿using EjemploEF.Models;
+using EjemploEF.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +7,23 @@ namespace EjemploEF.Controllers
 {
     public class HomeController : Controller
     {
+        private IEnrrollments _enrrollments;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IEnrrollments enrrollments)
         {
+            _enrrollments = enrrollments;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var getInnerJoin = _enrrollments.GetInnerJoin().ToList();
+
+            _ = getInnerJoin;
+
+            return View(getInnerJoin);
+            
         }
 
         public IActionResult Privacy()
