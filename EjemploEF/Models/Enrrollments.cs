@@ -12,6 +12,6 @@ namespace EjemploEF.Models
 
         public Course Course { get; set; }   
         
-        public Students Students { get; set; }
+        public Students Student { get; set; }
     }
 }

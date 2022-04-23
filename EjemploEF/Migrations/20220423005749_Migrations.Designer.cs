@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EjemploEF.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20220423003835_Migrations")]
+    [Migration("20220423005749_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,14 +51,11 @@ namespace EjemploEF.Migrations
                     b.Property<int>("StudentID")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentsStudentID")
-                        .HasColumnType("int");
-
                     b.HasKey("EnrrollmentId");
 
                     b.HasIndex("CourseID");
 
-                    b.HasIndex("StudentsStudentID");
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Enrrollments");
                 });
@@ -93,15 +90,15 @@ namespace EjemploEF.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EjemploEF.Models.Students", "Students")
+                    b.HasOne("EjemploEF.Models.Students", "Student")
                         .WithMany("Enrrollments")
-                        .HasForeignKey("StudentsStudentID")
+                        .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("Students");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("EjemploEF.Models.Course", b =>

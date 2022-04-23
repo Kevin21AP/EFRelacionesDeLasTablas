@@ -54,8 +54,7 @@ namespace EjemploEF.Migrations
                     EnrrollmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     StudentID = table.Column<int>(type: "int", nullable: false),
-                    CourseID = table.Column<int>(type: "int", nullable: false),
-                    StudentsStudentID = table.Column<int>(type: "int", nullable: false)
+                    CourseID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,8 +66,8 @@ namespace EjemploEF.Migrations
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Enrrollments_Students_StudentsStudentID",
-                        column: x => x.StudentsStudentID,
+                        name: "FK_Enrrollments_Students_StudentID",
+                        column: x => x.StudentID,
                         principalTable: "Students",
                         principalColumn: "StudentID",
                         onDelete: ReferentialAction.Cascade);
@@ -81,9 +80,9 @@ namespace EjemploEF.Migrations
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrrollments_StudentsStudentID",
+                name: "IX_Enrrollments_StudentID",
                 table: "Enrrollments",
-                column: "StudentsStudentID");
+                column: "StudentID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
